@@ -28,7 +28,7 @@ class Server {
         this.app.use(bodyParser.urlencoded({ extended: true }));
 
         // API Routes
-        this.app.use("/auth/api/v1", ProxyRouter.map());
+        this.app.use("/app/api/v1", ProxyRouter.map());
 
         //Error Handler
         this.app.use(errorHandler.genericErrorHandler);

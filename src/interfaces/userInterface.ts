@@ -1,5 +1,5 @@
 import * as Sequelize from 'sequelize';
-import { CursorPaginationOrderSearchExtend, ModelTimestampExtend } from '.';
+import { ModelTimestampExtend } from '.';
 
 import { RoleEnum, UserConfirmationEnum } from '../enums';
 

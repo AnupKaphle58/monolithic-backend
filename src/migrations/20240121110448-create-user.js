@@ -80,7 +80,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    /* dependency */
     await queryInterface.removeIndex('users', 'email');
     await queryInterface.dropTable('users');
   },

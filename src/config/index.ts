@@ -16,6 +16,7 @@ const mustExist = <T>(value: T | undefined, name: string): T => {
    * Application mode (Set the environment to 'development' by default)
    */
   environment = mustExist(process.env.ENVIRONMENT, "ENVIRONMENT"),
+  frontEndURL = mustExist(process.env.FRONT_END_URL, "FRONT_END_URL"),
   /**
    * Database Connection
    */
@@ -33,6 +34,9 @@ const mustExist = <T>(value: T | undefined, name: string): T => {
     publicAnonKey: mustExist(process.env.SUPABASE_PUBLIC_ANON_Key! as string, "SUPABASE_PUBLIC_ANON_Key"),
     url: mustExist(process.env.SUPABASE_URL! as string, "SUPABASE_URL"),
     serviceRole:mustExist(process.env.SUPABASE_SERVICE_ROLE! as string, "SUPABASE_SERVICE_ROLE"),
+  },
+  stripe = {
+    secretKey: mustExist(process.env.STRIPE_SECRET_KEY! as string, "STRIPE_SECRET_KEY")
   },
   corsWhitelist = ["http://localhost:5173"] as string[]
 
