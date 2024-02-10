@@ -1,0 +1,41 @@
+{
+  "name": "service-authenticator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/server.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "build:watch": "tsc --watch",
+    "start:watch": "nodemon dist/server.js",
+    "start:dev": "nodemon --exec ts-node --type-check src/server.ts",
+    "clean": "rm -rf ./dist"
+  },
+  "author": "Anup",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/morgan": "^1.9.9",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@babel/register": "^7.23.7",
+    "@hapi/boom": "^10.0.1",
+    "@joi/date": "^2.1.0",
+    "@supabase/supabase-js": "^2.39.3",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.2",
+    "express": "^4.18.2",
+    "joi": "^17.12.0",
+    "module-alias": "^2.2.3",
+    "morgan": "^1.10.0",
+    "pg": "^8.11.3",
+    "sequelize": "^6.35.2"
+  },
+  "_moduleAliases": {
+    "@src": "dist"
+  }
+}
