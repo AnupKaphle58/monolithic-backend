@@ -1,6 +1,7 @@
 import { IRouteInterface } from "@src/interfaces";
 import { Router } from "express";
 import { AuthRouter } from "./authRoutes";
+import { StripeRouter } from "./stripeRoutes";
 
 class ProxyRouter {
   private static instance: ProxyRouter;
@@ -10,6 +11,10 @@ class ProxyRouter {
       segment: "/user",
       provider: AuthRouter
     },
+    {
+      segment: '/stripe',
+      provider: StripeRouter
+    }
   ];
 
   private constructor() {}

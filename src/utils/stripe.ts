@@ -1,7 +1,6 @@
 import { Stripe } from "stripe";
 
 import { frontEndURL, stripe } from "@src/config";
-import { CreateSubscriptionInterface } from "@src/interfaces";
 
 class StripePayment {
     private static instance: StripePayment;
@@ -21,22 +20,22 @@ class StripePayment {
         return StripePayment.instance;
     };
 
-    public createCustomer = async (params: Stripe.CustomerCreateParams) => {
+    public createCustomer = async ({name, email, paymentMethod}: {name:string, email: string, paymentMethod: string}) => {
         const customer = await this.stripe.customers.create({
-            name: params.name,
-            email: params.email,
-            payment_method: params.payment_method,
+            name: name,
+            email: email,
+            payment_method: paymentMethod,
             invoice_settings: {
-                default_payment_method: params.payment_method,
+                default_payment_method: paymentMethod,
             },
         });
 
-        const setupIntent = await this.stripe.setupIntents.create({
+        const createIntent = await this.stripe.setupIntents.create({
             payment_method_types: ["card"],
             customer: customer.id
         });
 
-        return ({ customer, setupIntent });
+        return ({ customer, createIntent });
     }
 
     public createSubscription = (customerId: string, priceId: string) => {
