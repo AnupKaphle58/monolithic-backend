@@ -21,5 +21,11 @@ export class StripeRouter extends RouterClass {
       .post(
         exceptionHandler(StripeController.createSubscription)
       );
+
+      this.router
+      .route("/create-payment-intent")
+      .post(
+        exceptionHandler(StripeController.createPaymentIntent)
+      );
     }
 }

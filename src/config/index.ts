@@ -36,7 +36,8 @@ const mustExist = <T>(value: T | undefined, name: string): T => {
     serviceRole:mustExist(process.env.SUPABASE_SERVICE_ROLE! as string, "SUPABASE_SERVICE_ROLE"),
   },
   stripe = {
-    secretKey: mustExist(process.env.STRIPE_SECRET_KEY! as string, "STRIPE_SECRET_KEY")
+    secretKey: mustExist(process.env.STRIPE_SECRET_KEY! as string, "STRIPE_SECRET_KEY"),
+    webhookSecret: mustExist(process.env.STRIPE_WEBHOOK_SECRET! as string, "STRIPE_WEBHOOK_SECRET")
   },
   corsWhitelist = ["http://localhost:5173"] as string[]
 

@@ -20,6 +20,15 @@ export class StripeController {
         }); 
     }
 
+    public static async createPaymentIntent(req: Request, res: Response): Promise<Response> {
+        const {amount} = req.body;
+        const paymentIntent = await StripePayment.createPaymentIntent(amount);
+        return res.status(200).json({
+            message: 'Payment Intent created successfully',
+            paymentIntent: paymentIntent.client_secret
+        }); 
+    }
+
     public static async createSubscription(req: Request, res: Response): Promise<Response> {
         const {customerId, priceId} = req.body;
 

@@ -1,6 +1,7 @@
 import { Stripe } from "stripe";
 
 import { frontEndURL, stripe } from "@src/config";
+import { PaymentIntentEnum } from "@src/enums";
 
 class StripePayment {
     private static instance: StripePayment;
@@ -53,6 +54,17 @@ class StripePayment {
                 },
             },
         });
+    };
+
+    public createPaymentIntent = (amount: number) => {
+        return this.stripe.paymentIntents.create({
+            payment_method_types: ["card"],
+            amount: amount,
+            currency: "USD",
+            automatic_payment_methods: {
+                enabled: true,
+              },          
+        })
     };
 
     public createCustomerPortal = () => {
