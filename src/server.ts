@@ -61,19 +61,11 @@ class Server {
         this.app.use(
             async function (req, res, next) {
                 const token = req.headers.authorization as string;
-                const secret = req.headers?.["x-workspace-secret-id"] as string;
-                const clientIp = req.headers?.['x-request-ip'] as string;
-                const deviceId = req.headers?.['x-device-id'] as string;
-                const browser = req.headers?.['sec-ch-ua'] as string;
-                const isMobile = req.headers?.['sec-ch-ua-mobile'] as string;
-                const platform = req.headers?.['sec-ch-ua-platform'] as string;
-
                 let user: UserInterface | undefined;
 
                 if (token) {
                     user = await Guard.auth(token.replace("Bearer ", ""));
                 }
-
                 next();
             })
         this.app.listen(this.app.get("port"), () =>

@@ -2,6 +2,7 @@ import { IRouteInterface } from "@src/interfaces";
 import { Router } from "express";
 import { AuthRouter } from "./authRoutes";
 import { StripeRouter } from "./stripeRoutes";
+import { EstimateAmountRouter } from "./estimateAmountRoutes";
 
 class ProxyRouter {
   private static instance: ProxyRouter;
@@ -10,6 +11,10 @@ class ProxyRouter {
     {
       segment: "/user",
       provider: AuthRouter
+    },
+    {
+      segment: "/estimate",
+      provider: EstimateAmountRouter
     },
     {
       segment: '/stripe',

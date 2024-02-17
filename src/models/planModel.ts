@@ -47,6 +47,11 @@ const PlanModel = sequelize.define<PlanModelInterface>(
             ),
             allowNull: false,
         },
+    },
+    {
+        timestamps: true,
+        paranoid: true,
+        underscored: true,
     }
 );
 

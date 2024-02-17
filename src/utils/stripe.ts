@@ -21,8 +21,8 @@ class StripePayment {
         return StripePayment.instance;
     };
 
-    public createCustomer = async ({name, email, paymentMethod}: {name:string, email: string, paymentMethod: string}) => {
-        const customer = await this.stripe.customers.create({
+    public createCustomer = async ({ name, email, paymentMethod }: { name: string, email: string, paymentMethod: string }) => {
+        return this.stripe.customers.create({
             name: name,
             email: email,
             payment_method: paymentMethod,
@@ -30,13 +30,6 @@ class StripePayment {
                 default_payment_method: paymentMethod,
             },
         });
-
-        const createIntent = await this.stripe.setupIntents.create({
-            payment_method_types: ["card"],
-            customer: customer.id
-        });
-
-        return ({ customer, createIntent });
     }
 
     public createSubscription = (customerId: string, priceId: string) => {
@@ -57,13 +50,14 @@ class StripePayment {
     };
 
     public createPaymentIntent = (amount: number) => {
+        this.stripe.tokens.create()
         return this.stripe.paymentIntents.create({
             payment_method_types: ["card"],
             amount: amount,
             currency: "USD",
-            automatic_payment_methods: {
-                enabled: true,
-              },          
+            // automatic_payment_methods: {
+            //     enabled: true,
+            //   },          
         })
     };
 

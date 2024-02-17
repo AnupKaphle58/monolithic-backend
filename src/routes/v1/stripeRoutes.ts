@@ -1,5 +1,6 @@
 import { RouterClass } from "@src/classes";
 import { StripeController } from "@src/controllers";
+import { Guard } from "@src/middlewares";
 import exceptionHandler from "@src/middlewares/exceptionHandler";
 
 
@@ -25,6 +26,7 @@ export class StripeRouter extends RouterClass {
       this.router
       .route("/create-payment-intent")
       .post(
+        exceptionHandler(Guard.grant),
         exceptionHandler(StripeController.createPaymentIntent)
       );
     }

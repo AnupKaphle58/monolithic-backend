@@ -48,27 +48,6 @@ class Guard {
     }
   };
 
-//   private checkWorkspace = async ({
-//     user,
-//     secret,
-//   }: {
-//     user: UserInterface;
-//     secret: string;
-//   }): Promise<UserWorkspaceInterface> => {
-//     const workspaceExists = await new UserWorkspaceService().findOne({
-//       userId: user.id,
-//       workspaceSecret: secret,
-//     });
-//     if (!workspaceExists)
-//       throw Boom.badRequest(`Invalid workspace secret id`, [
-//         {
-//           message: "Invalid workspace secret id",
-//           path: ["x-workspace-secret-id"],
-//         },
-//       ]);
-//     return workspaceExists;
-//   };
-
   grant = async (req: Request, res: Response, next: NextFunction) => {
     const token = req.headers.authorization as string;
     if (!token) {
@@ -87,24 +66,6 @@ class Guard {
     req.headers.user = user as any;
     next();
   };
-
-//   grantWorkspace = async (req: Request, res: Response, next: NextFunction) => {
-//     const secret = req.headers?.["x-workspace-secret-id"] as string;
-//     if (secret) {
-//       const user = req.headers.user as unknown as UserInterface;
-//       const userWorkspace = await this.checkWorkspace({ user, secret });
-//       if (!userWorkspace) {
-//         throw Boom.badRequest(`Invalid workspace secret id`, [
-//           {
-//             message: "Invalid workspace secret id",
-//             path: ["x-workspace-secret-id"],
-//           },
-//         ]);
-//       }
-//       req.headers.userWorkspace = userWorkspace as any;
-//     }
-//     next();
-//   };
 }
 
 const guard = Guard.get();
