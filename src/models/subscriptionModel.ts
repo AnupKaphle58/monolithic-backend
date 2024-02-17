@@ -74,4 +74,4 @@ User.hasMany(SubscriptionModel, {
 });
 
 
-export default User;
+export default SubscriptionModel;

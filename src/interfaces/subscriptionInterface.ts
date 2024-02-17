@@ -14,7 +14,7 @@ export interface InputSubscriptionInterface {
 }
 
 export interface SubscriptionInterface extends ModelTimestampExtend {
-    id: Sequelize.CreationOptional<number>;
+    id: Sequelize.CreationOptional<number>,
     userId: number,
     active: boolean,
     currentPeriodEnd: string,

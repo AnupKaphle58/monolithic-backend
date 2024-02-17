@@ -1,7 +1,9 @@
 import User from "./user"
+import PlanModel from "./planModel";
 
 const Model = {
- User
+ User,
+ PlanModel
 };
 
 export default Model;

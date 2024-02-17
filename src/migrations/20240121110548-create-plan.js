@@ -33,6 +33,10 @@ module.exports = {
       price: {
         type: Sequelize.DECIMAL(10, 2),
       },    
+      occurance: {
+        type: Sequelize.ENUM('monthly', 'yearly'),
+        allowNull: false,
+      },
       active: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
